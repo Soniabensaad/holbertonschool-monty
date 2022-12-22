@@ -1,34 +1,41 @@
 #include "monty.h"
 
-void st_push(stack_t **stack, unsigned int counter)
+/**
+ * push - pushes an element to the stack
+ * @stack: top of stack_t stack
+ * @line_number: current instruction line_number
+ * Return: nothing
+ */
+void push(stack_t **stack, unsigned int line_number)
 {
-    int n, i = 0, z;
+	char *valor, *line_dup;
+	char *delim = " '\r''\n''\t'";
+	stack_t *new_node = NULL;
 
-    if (tok)
-    {
-        if (tok[0] == '-')
-            i++;
-        for (; tok[i] != '\0'; i++)
-        {
-            if (tok[i] > '9' || tok[i] < '0')
-            {
-                z = 1;
-            }
-        }
-        if (z == 1)
-        {
-            fprintf(stderr, "L%d: usage: push integer\n", counter);
-            free_stack(*stack);
-            exit(EXIT_FAILURE);
-        }
-    }
-    else
-    {
-        fprintf(stderr, "L%d: usage: push integer\n", counter);
-        free_stack(*stack);
-        exit(EXIT_FAILURE);
-    }
-    n = atoi(tok);
+	line_dup = strdup(st_tools.instructions);
+	strtok(line_dup, delim);
+	valor = strtok(NULL, delim);
 
-    add_node(stack, n);
+	if (!is_numeric(valor) || valor == NULL)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		free(line_dup);
+		clear_stack(*stack);
+		clean_exit();
+	}
+
+	if (strcmp(st_tools.type, "queue") == 0)
+		new_node = add_node_end(stack, atoi(valor));
+	else
+		new_node = add_node_head(stack, atoi(valor));
+
+	if (new_node == NULL)
+	{
+		puts_stderr("Error: malloc failed\n");
+		free(line_dup);
+		clear_stack(*stack);
+		clean_exit();
+	}
+	free(line_dup);
 }
+
