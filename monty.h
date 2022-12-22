@@ -1,17 +1,14 @@
-#ifndef __MONTY_H__
-#define __MONTY_H__
-
-#include <stdlib.h>
+#ifndef MONTY_H
+#define MONTY_H
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>
-#include <sys/stat.h>
+#include <unistd.h>
 #include <fcntl.h>
+#include <string.h>
 #include <ctype.h>
 
-#include <stdbool.h>
-#include <string.h>
-
-#define DELIMS "\n \r\t"
+char *val;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -30,7 +27,7 @@ typedef struct stack_s
 } stack_t;
 
 /**
- * struct instruction_s - opcoode and its function
+ * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
  *
@@ -43,27 +40,20 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern stack_t **global_head;
-
-void global_free(void);
-
-void read_file(char *file, stack_t **stack);
-void parse_command(stack_t **stack, char *op, unsigned int line_num);
-
-void push(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
-void pop(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
-void add(stack_t **stack, unsigned int line_number);
-void nop(stack_t **stack, unsigned int line_number);
-void sub(stack_t **stack, unsigned int line_number);
-void _div(stack_t **stack, unsigned int line_number);
-void mul(stack_t **stack, unsigned int line_number);
-void mod(stack_t **stack, unsigned int line_number);
-void pchar(stack_t **stack, unsigned int line_number);
-void pstr(stack_t **stack, unsigned int line_number);
-void rotl(stack_t **stack, unsigned int line_number);
-void rotr(stack_t **stack, unsigned int line_number);
-
+void execute(char *cont, stack_t **stack, unsigned int count);
+void free_stack(stack_t *stack);
+void p_push(stack_t **stack, unsigned int count);
+void add_node(stack_t **stack, int n);
+void p_pall(stack_t **stack, __attribute__((unused)) unsigned int count);
+void p_pint(stack_t **stack, unsigned int count);
+void p_pop(stack_t **stack, unsigned int count);
+void p_swap(stack_t **stack, unsigned int count);
+void p_add(stack_t **stack, unsigned int count);
+void p_nop(__attribute__((unused)) stack_t **stack, __attribute__((unused)) unsigned int count);
+void p_sub(stack_t **stack, unsigned int count);
+void p_div(stack_t **stack, unsigned int count);
+void p_mul(stack_t **stack, unsigned int count);
+void p_mod(stack_t **stack, unsigned int count);
+void p_pchar(stack_t **stack, unsigned int count);
+void p_pstr(stack_t **stack, unsigned int count);
 #endif
