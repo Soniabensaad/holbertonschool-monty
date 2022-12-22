@@ -7,38 +7,38 @@
  * @cont: line content
  */
 
-void execute(char *cont, stack_t **stack, unsigned int count)
+void apply(char *conter, stack_t **stack, unsigned int count)
 {
 
-	instruction_t opst[] = {{"push", p_push},
-							{"pall", p_pall},
-							{"pint", p_pint},
-							{"pop", p_pop},
+	instruction_t opst[] = {{"push", push},
+							{"pall", pall},
+							{"pint", pint},
+							{"pop", pop},
 							{NULL, NULL}};
 
 	int i = 0;
-	char *op;
+	char *p;
 
-	op = strtok(cont, " \n\t");
+	p = strtok(conter, delim);
 
-	val = strtok(NULL, " \n\t");
-	if (op[0] == '#')
+	val = strtok(NULL, delim);
+	if (p[0] == '#')
 	{
 		return;
 	}
-	while (opst[i].opcode && op)
+	while (opst[i].opcode && p)
 	{
-		if (strcmp(op, opst[i].opcode) == 0)
+		if (strcmp(p, opst[i].opcode) == 0)
 		{
 			opst[i].f(stack, count);
 			return;
 		}
 		i++;
 	}
-	if (op && opst[i].opcode == NULL)
+	if (p && opst[i].opcode == NULL)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", count, op);
-		free(cont);
+		fprintf(stderr, "L%d: unknown instruction %s\n", count, p);
+		free(conter);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}

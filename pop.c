@@ -6,21 +6,21 @@
  * @count: unsigned int
  */
 
-void p_pop(stack_t **stack, unsigned int count)
+void pop(stack_t **stack, unsigned int counter)
 {
-	stack_t *h;
+	stack_t *s;
 
-	h = *stack;
-	if (h == NULL)
+	s = *stack;
+	if (s == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", count);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", counter);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		free(*stack);
-		h = h->next;
-		*stack = h;
+		s = s->next;
+		*stack = s;
 	}
 }

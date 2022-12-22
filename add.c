@@ -6,7 +6,7 @@
  * @count: unsigned int
  */
 
-void p_add(stack_t **stack, unsigned int count)
+void add(stack_t **stack, unsigned int counter)
 {
 	stack_t *h, *z;
 	int i = 0, a;
@@ -14,7 +14,7 @@ void p_add(stack_t **stack, unsigned int count)
 	h = *stack;
 	if (h == NULL)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", count);
+		fprintf(stderr, "L%d: can't add, stack too short\n", counter);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
@@ -25,7 +25,7 @@ void p_add(stack_t **stack, unsigned int count)
 	}
 	if (i < 2)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", count);
+		fprintf(stderr, "L%d: can't add, stack too short\n", counter);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}

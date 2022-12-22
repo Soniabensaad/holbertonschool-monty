@@ -6,16 +6,16 @@
  * @count: unsigned int
  */
 
-void p_pall(stack_t **stack, __attribute__((unused)) unsigned int count)
+void pall(stack_t **stack, __attribute__((unused)) unsigned int counter)
 {
-	stack_t *h;
+	stack_t *tmp;
 
-	h = *stack;
-	if (h == NULL)
+	tmp = *stack;
+	if (tmp == NULL)
 		return;
-	while (h)
+	while (tmp)
 	{
-		printf("%d\n", h->n);
-		h = h->next;
+		printf("%d\n", tmp->n);
+		tmp = tmp->next;
 	}
 }

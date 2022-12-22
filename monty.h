@@ -1,5 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define delim  " \n\t"
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -40,14 +41,19 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void execute(char *cont, stack_t **stack, unsigned int count);
+void apply(char *conter, stack_t **stack, unsigned int count);
 void free_stack(stack_t *stack);
 void add_node(stack_t **stack, int n);
-void p_push(stack_t **stack, unsigned int count);
-void p_add(stack_t **stack, unsigned int count);
-void p_pall(stack_t **stack, __attribute__((unused)) unsigned int count);
-void p_pint(stack_t **stack, unsigned int count);
-void p_pop(stack_t **stack, unsigned int count);
+void push(stack_t **stack, unsigned int counter);
+void add(stack_t **stack, unsigned int counter);
+void pall(stack_t **stack, __attribute__((unused)) unsigned int counter);
+void pint(stack_t **stack, unsigned int counter);
+void pop(stack_t **stack, unsigned int counter);
+void swap(stack_t **stack, unsigned int counter);
+void p_nop(__attribute__((unused)) stack_t **stack,
+                   __attribute__((unused)) unsigned int count);
+void sub(stack_t **stack, unsigned int counter);
+void div(stack_t **stack, unsigned int counter);
 
 
 #endif
