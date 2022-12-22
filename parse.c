@@ -1,34 +1,45 @@
 #include "monty.h"
 
 /**
- * parse_command - parses commands from the line op
- * @stack: the pointer to the head of the stack
- * @op: the line with commands/instructions
- * @line_num: a number of the line
- *
- * Return: void
+ * execute - executes the opcode
+ * @stack: head linked list - stack
+ * @count: line_counte
+ * @cont: line content
  */
-void parse_command(stack_t **stack, char *op, unsigned int line_num)
-{
-	int i;
-	instruction_t ops[] = {
-		{"push", push},
-		{"pall", pall},
-		{"pint", pint},
-		{"pop", pop},
-		{NULL, NULL}
-	};
 
-	for (i = 0; ops[i].opcode; i++)
-		if (strcmp(op, ops[i].opcode) == 0)
+void execute(char *cont, stack_t **stack, unsigned int count)
+{
+
+	instruction_t opst[] = {{"push", p_push},
+							{"pall", p_pall},
+							{"pint", p_pint},
+							{"pop", p_pop},
+							{NULL, NULL}};
+
+	int i = 0;
+	char *op;
+
+	op = strtok(cont, " \n\t");
+
+	val = strtok(NULL, " \n\t");
+	if (op[0] == '#')
+	{
+		return;
+	}
+	while (opst[i].opcode && op)
+	{
+		if (strcmp(op, opst[i].opcode) == 0)
 		{
-			ops[i].f(stack, line_num);
+			opst[i].f(stack, count);
 			return;
 		}
-
-	if (strlen(op) != 0 && op[0] != '#')
+		i++;
+	}
+	if (op && opst[i].opcode == NULL)
 	{
-		printf("L%u: unknown instruction %s\n", line_num, op);
+		fprintf(stderr, "L%d: unknown instruction %s\n", count, op);
+		free(cont);
+		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 }
