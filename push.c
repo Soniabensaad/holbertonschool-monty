@@ -1,41 +1,37 @@
 #include "monty.h"
 
 /**
- * push - pushes an element to the stack
- * @stack: top of stack_t stack
- * @line_number: current instruction line_number
- * Return: nothing
+ * push - pushes new node to the end of the stack
+ * @stack: double pointer to the head of the stack
+ * @line_number: the number of a line of the file
+ *
+ * Return: void
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	char *valor, *line_dup;
-	char *delim = " '\r''\n''\t'";
-	stack_t *new_node = NULL;
+	stack_t *node;
+	char *num;
 
-	line_dup = strdup(st_tools.instructions);
-	strtok(line_dup, delim);
-	valor = strtok(NULL, delim);
-
-	if (!is_numeric(valor) || valor == NULL)
+	num = strtok(NULL, DELIMS);
+	if (num == NULL)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		free(line_dup);
-		clear_stack(*stack);
-		clean_exit();
+		printf("L%u: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
 	}
 
-	if (strcmp(st_tools.type, "queue") == 0)
-		new_node = add_node_end(stack, atoi(valor));
-	else
-		new_node = add_node_head(stack, atoi(valor));
-
-	if (new_node == NULL)
+	node = malloc(sizeof(stack_t));
+	if (node == NULL)
 	{
-		puts_stderr("Error: malloc failed\n");
-		free(line_dup);
-		clear_stack(*stack);
-		clean_exit();
+		printf("Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
-	free(line_dup);
+
+	node->n = atoi(num);
+	node->prev = NULL;
+	node->next = *stack;
+
+	if (*stack != NULL)
+		(*stack)->prev = node;
+
+	*stack = node;
 }
-
