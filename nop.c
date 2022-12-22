@@ -6,7 +6,7 @@
  * @count: unsigned int
  */
 
-void p_nop(__attribute__((unused)) stack_t **stack,
-		   __attribute__((unused)) unsigned int count)
+void nop(__attribute__((unused)) stack_t **stack,
+		   __attribute__((unused)) unsigned int counter)
 {
 }

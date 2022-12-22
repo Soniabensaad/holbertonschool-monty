@@ -50,8 +50,8 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int counter);
 void pint(stack_t **stack, unsigned int counter);
 void pop(stack_t **stack, unsigned int counter);
 void swap(stack_t **stack, unsigned int counter);
-void p_nop(__attribute__((unused)) stack_t **stack,
-                   __attribute__((unused)) unsigned int count);
+void nop(__attribute__((unused)) stack_t **stack,
+                   __attribute__((unused)) unsigned int counter);
 void sub(stack_t **stack, unsigned int counter);
 void div(stack_t **stack, unsigned int counter);
 

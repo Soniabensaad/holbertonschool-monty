@@ -14,6 +14,11 @@ void apply(char *conter, stack_t **stack, unsigned int count)
 							{"pall", pall},
 							{"pint", pint},
 							{"pop", pop},
+                            {"swap", swap},
+							{"add", add},
+							{"nop", nop},
+							{"sub", sub},
+							{"div", div},
 							{NULL, NULL}};
 
 	int i = 0;
