@@ -1,40 +1,37 @@
 #include "monty.h"
 
 /**
- * p_push - pushes an element to the stack
- * @stack: stack_t
- * @count: unsigned int
+ * push - pushes new node to the end of the stack
+ * @stack: double pointer to the head of the stack
+ * @line_number: the number of a line of the file
+ *
+ * Return: void
  */
-
-void p_push(stack_t **stack, unsigned int count)
+void push(stack_t **stack, unsigned int line_number)
 {
-	int n, i = 0, z;
+	stack_t *node;
+	char *num;
 
-	if (val)
+	num = strtok(NULL, DELIMS);
+	if (num == NULL)
 	{
-		if (val[0] == '-')
-			i++;
-		for (; val[i] != '\0'; i++)
-		{
-			if (val[i] > '9' || val[i] < '0')
-			{
-				z = 1;
-			}
-		}
-		if (z == 1)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", count);
-			free_stack(*stack);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", count);
-		free_stack(*stack);
+		printf("L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	n = atoi(val);
 
-	add_node(stack, n);
+	node = malloc(sizeof(stack_t));
+	if (node == NULL)
+	{
+		printf("Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
+	node->n = atoi(num);
+	node->prev = NULL;
+	node->next = *stack;
+
+	if (*stack != NULL)
+		(*stack)->prev = node;
+
+	*stack = node;
 }

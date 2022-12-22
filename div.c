@@ -1,44 +1,30 @@
 #include "monty.h"
 
 /**
- * p_add - adds the top two elements of the stack
- * @stack: stack_t
- * @count: unsigned int
+ * div - divides the second top element of the stack by the top element
+ * of the stack.
+ * @stack: double pointer to the head of the stack
+ * @line_number: the number of the line in file
+ *
+ * Return: void
  */
-
-void div(stack_t **stack, unsigned int counter)
+void _div(stack_t **stack, unsigned int line_number)
 {
-    stack_t *h, *z;
-    int i = 0, a = 0;
+	stack_t *temp;
+	int product;
 
-    h = *stack;
-    if (h == NULL)
-    {
-        fprintf(stderr, "L%d: can't div, stack too short\n", counter);
-        free_stack(*stack);
-        exit(EXIT_FAILURE);
-    }
-    while (h)
-    {
-        h = h->next;
-        i++;
-    }
-    if (i < 2)
-    {
-        fprintf(stderr, "L%d: can't div, stack too short\n", counter);
-        free_stack(*stack);
-        exit(EXIT_FAILURE);
-    }
-    if ((*stack)->n == 0)
-    {
-        fprintf(stderr, "L%d: division by zero\n", counter);
-        free_stack(*stack);
-        exit(EXIT_FAILURE);
-    }
-    z = *stack;
-    a = (*stack)->next->n / (*stack)->n;
-    (*stack)->next->n = a;
-    *stack = (*stack)->next;
-    free(z);
+	if (!stack || !(*stack) || !(*stack)->next)
+	{
+		printf("L%u: can't div, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	temp = *stack;
+
+	product = temp->next->n / temp->n;
+	temp->next->n = product;
+
+	*stack = temp->next;
+
+	free(temp);
 }
-
