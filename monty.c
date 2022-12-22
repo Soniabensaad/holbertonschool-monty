@@ -1,9 +1,9 @@
 #include "monty.h"
 
-stack_t **value;
+stack_t **global_head;
 
 /**
- * monty - the root of the project
+ * main - the root of the project
  * @argc: how many arguments were passed to a program
  * @argv: arguments vector
  *
@@ -11,7 +11,7 @@ stack_t **value;
  */
 int main(int argc, char *argv[])
 {
-	stack_t *stack;
+	stack_t *head;
 
 	if (argc != 2)
 	{
@@ -19,10 +19,10 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	stack = NULL;
-	value = &stack;
+	head = NULL;
+	global_head = &head;
 
-	read_file(argv[1], &stack);
+	read_file(argv[1], &head);
 
 	atexit(global_free);
 

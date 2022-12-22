@@ -1,23 +1,23 @@
 #include "monty.h"
 
 /**
- * free_all - globally frees memory, previously alocated in the program
+ * global_free - globally frees memory, previously alocated in the program
  *
  * Return: void
  */
 void global_free(void)
 {
-	stack_t *free_all;
+	stack_t *to_free;
 	stack_t *temp = NULL;
 
-	free_all = *value;
+	to_free = *global_head;
 
-	while (free)
+	while (to_free)
 	{
-		temp = free_all->next;
+		temp = to_free->next;
 
-		free(free_all);
+		free(to_free);
 
-		free_all = temp;
+		to_free = temp;
 	}
 }

@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * pop - removes the top element of the stack.
  * @stack: double pointer to the head of the stack
@@ -8,7 +9,7 @@
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tpr;
+	stack_t *temp;
 
 	if (stack == NULL || *stack == NULL)
 	{
@@ -16,8 +17,8 @@ void pop(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	tpr = *stack;
+	temp = *stack;
 	*stack = (*stack)->next;
 
-	free(tpr);
+	free(temp);
 }

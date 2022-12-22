@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * pall - prints all values from the stack
  * @stack: double pointer to the head of the stack
@@ -8,13 +9,13 @@
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tpr = *stack;
+	stack_t *temp = *stack;
 
 	(void) line_number;
 
-	while (tpr)
+	while (temp)
 	{
-		printf("%d\n", tpr->n);
-		tpr = tpr->next;
+		printf("%d\n", temp->n);
+		temp = temp->next;
 	}
 }

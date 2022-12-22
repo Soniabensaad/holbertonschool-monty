@@ -1,13 +1,14 @@
 #include "monty.h"
+
 /**
- * token - parses commands from the line op
+ * parse_command - parses commands from the line op
  * @stack: the pointer to the head of the stack
  * @op: the line with commands/instructions
  * @line_num: a number of the line
  *
  * Return: void
  */
-void token(stack_t **stack, char *op, unsigned int line_num)
+void parse_command(stack_t **stack, char *op, unsigned int line_num)
 {
 	int i;
 	instruction_t ops[] = {
