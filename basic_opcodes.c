@@ -1,11 +1,11 @@
 #include "monty.h"
 /**
- * exec_pall - this function executes the pall opcode
+ * apply_pall - this function executes the pall opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void exec_pall(stack_t **stack, unsigned int line_number)
+void apply_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 	(void) line_number;
@@ -24,23 +24,23 @@ void exec_pall(stack_t **stack, unsigned int line_number)
 	printf("%d\n", tmp->n);
 }
 /**
- * exec_nop - this function executes the nop opcode does nothing jeje
+ * apply_nop - this function executes the nop opcode does nothing jeje
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void exec_nop(stack_t **stack, unsigned int line_number)
+void apply_nop(stack_t **stack, unsigned int line_number)
 {
 	(void) stack;
 	(void) line_number;
 }
 /**
- * exec_pint - this function executes the pint opcode
+ * apply_pint - this function executes the pint opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void exec_pint(stack_t **stack, unsigned int line_number)
+void apply_pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *actual = *stack;
 
@@ -48,12 +48,12 @@ void exec_pint(stack_t **stack, unsigned int line_number)
 	printf("%d\n", actual->n);
 }
 /**
- * exec_pop - this function executes the pop opcode
+ * apply_pop - this function executes the pop opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void exec_pop(stack_t **stack, unsigned int line_number)
+void apply_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 
@@ -65,12 +65,12 @@ void exec_pop(stack_t **stack, unsigned int line_number)
 	free(tmp);
 }
 /**
- * exec_swap - this function executes the swap opcode
+ * apply_swap - this function executes the swap opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void exec_swap(stack_t **stack, unsigned int line_number)
+void apply_swap(stack_t **stack, unsigned int line_number)
 {
 	int aux;
 	stack_t *actual = *stack, *next;

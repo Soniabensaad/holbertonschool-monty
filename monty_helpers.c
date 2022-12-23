@@ -28,12 +28,12 @@ void open_and_read(char *f)
 	int value;
 	char *op, *val, *opcode;
 
-	settings.file = fopen(f, "r");
-	if (settings.file == NULL)
+	file.fp = fopen(f, "r");
+	if (file.fp == NULL)
 		error_handler(f, -96, ln);
-	while ((r = getline(&settings.line, &l, settings.file)) != -1)
+	while ((r = getline(&file.line, &l, file.fp)) != -1)
 	{
-		op = strtok(settings.line, " ");
+		op = strtok(file.line, " ");
 		if (*op == '#' || *op == '\n')
 		{
 			ln++;
@@ -46,47 +46,47 @@ void open_and_read(char *f)
 			if (is_number(val) && val != NULL)
 			{
 				value = atoi(val);
-				if (!settings.queue)
-					push_stack(&settings.stack, value);
+				if (!file.queue)
+					apply_stack(&file.stack, value);
 				else
-					push_queue(&settings.stack, value);
+					apply_queue(&file.stack, value);
 			}
 			else
 				error_handler(opcode, -129, ln);
 		} else
 		{
-			exec_monty(&settings.stack, opcode, ln);
+			apply_monty(&file.stack, opcode, ln);
 		}
 		ln++;
 	}
 }
 /**
- * exec_monty - execute the opcode funcion
+ * apply_monty - execute the opcode funcion
  * @stack: head of the stack
  * @opcode: opcode instruction
  * @ln: number of line
  */
-void exec_monty(stack_t **stack, char *opcode, int ln)
+void apply_monty(stack_t **stack, char *opcode, int ln)
 {
 	int i;
 	char *op;
 	instruction_t instructions[] = {
-		{"pall", exec_pall},
-		{"pint", exec_pint},
-		{"pop", exec_pop},
-		{"swap", exec_swap},
-		{"nop", exec_nop},
-		{"pchar", exec_pchar},
-		{"pstr", exec_pstr},
-		{"add", exec_add},
-		{"sub", exec_sub},
-		{"mul", exec_mul},
-		{"div", exec_div},
-		{"mod", exec_mod},
-		{"rotl", exec_rotl},
-		{"rotr", exec_rotr},
-		{"stack", exec_stack},
-		{"queue", exec_queue},
+		{"pall", apply_pall},
+		{"pint", apply_pint},
+		{"pop",apply_pop},
+		{"swap", apply_swap},
+		{"nop",apply_nop},
+		{"pchar", apply_pchar},
+		{"pstr", apply_pstr},
+		{"add", apply_add},
+		{"sub", apply_sub},
+		{"mul", apply_mul},
+		{"div", apply_div},
+		{"mod", apply_mod},
+		{"rotl", apply_rotl},
+		{"rotr", apply_rotr},
+		{"stack", apply_stack},
+		{"queue",apply_queue},
 		{NULL, NULL}
 	};
 	op = strtok(opcode, " \n");
@@ -99,24 +99,24 @@ void exec_monty(stack_t **stack, char *opcode, int ln)
 	error_handler(opcode, -128, ln);
 }
 /**
- * set - set initial values
+ * get - set initial values
  * Return: void
  */
-void set(void)
+void get(void)
 {
-	settings.file = NULL;
-	settings.line = NULL;
-	settings.stack = NULL;
-	settings.queue = false;
+	file.fp = NULL;
+	file.line = NULL;
+	file.stack = NULL;
+	file.queue = false;
 }
 /**
- * clean - clean men
+ * total_free - clean men
  * Return: void
  */
-void clean(void)
+void total_free(void)
 {
-	fclose(settings.file);
-	free(settings.line);
-	fstack(settings.stack);
+	fclose(file.fp);
+	free(file.line);
+	fstack(file.stack);
 }
 

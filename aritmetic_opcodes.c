@@ -1,11 +1,11 @@
 #include "monty.h"
 /**
- * exec_div - this function executes the div opcode
+ * apply_div - this function executes the div opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void exec_div(stack_t **stack, unsigned int line_number)
+void apply_div(stack_t **stack, unsigned int line_number)
 {
 	stack_t *actual = *stack, *next;
 
@@ -15,15 +15,15 @@ void exec_div(stack_t **stack, unsigned int line_number)
 		error_handler("div", -126, line_number);
 	next = actual->next;
 	next->n =  next->n / actual->n;
-	exec_pop(stack, line_number);
+	apply_pop(stack, line_number);
 }
 /**
- * exec_mod - this function executes the mod opcode
+ * apply_mod - this function executes the mod opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void exec_mod(stack_t **stack, unsigned int line_number)
+void apply_mod(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack, *next;
 
@@ -33,15 +33,15 @@ void exec_mod(stack_t **stack, unsigned int line_number)
 		error_handler("mod", -126, line_number);
 	next = current->next;
 	next->n =  next->n % current->n;
-	exec_pop(stack, line_number);
+	apply_pop(stack, line_number);
 }
 /**
- * exec_add - this function executes the add opcode
+ * apply_add - this function executes the add opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void exec_add(stack_t **stack, unsigned int line_number)
+void apply_add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *actual = *stack, *next;
 
@@ -49,15 +49,15 @@ void exec_add(stack_t **stack, unsigned int line_number)
 		error_handler("add", -99, line_number);
 	next = actual->next;
 	next->n =  next->n + actual->n;
-	exec_pop(stack, line_number);
+apply_pop(stack, line_number);
 }
 /**
- * exec_sub - this function executes the div opcode
+ * apply_sub - this function executes the div opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void exec_sub(stack_t **stack, unsigned int line_number)
+void apply_sub(stack_t **stack, unsigned int line_number)
 {
 	stack_t *actual = *stack, *next;
 
@@ -65,15 +65,15 @@ void exec_sub(stack_t **stack, unsigned int line_number)
 		error_handler("sub", -99, line_number);
 	next = actual->next;
 	next->n =  next->n - actual->n;
-	exec_pop(stack, line_number);
+	apply_pop(stack, line_number);
 }
 /**
- * exec_mul - this function executes the div opcode
+ * apply_mul - this function executes the div opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void exec_mul(stack_t **stack, unsigned int line_number)
+void apply_mul(stack_t **stack, unsigned int line_number)
 {
 	stack_t *actual = *stack, *next;
 
@@ -81,5 +81,5 @@ void exec_mul(stack_t **stack, unsigned int line_number)
 		error_handler("mul", -99, line_number);
 	next = actual->next;
 	next->n =  next->n * actual->n;
-	exec_pop(stack, line_number);
+	apply_pop(stack, line_number);
 }

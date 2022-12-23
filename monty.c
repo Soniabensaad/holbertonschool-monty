@@ -1,5 +1,5 @@
 #include "monty.h"
-settings_t settings;
+file_t file;
 /**
  * main - entry point
  * @argc: count of arguments
@@ -9,9 +9,9 @@ settings_t settings;
  */
 int main(int argc, char **argv)
 {
-	set();
+	get();
 	verify_args(argc);
 	open_and_read(*(argv + 1));
-	clean();
+	total_free();
 	return (EXIT_SUCCESS);
 }

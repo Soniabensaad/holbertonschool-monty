@@ -1,7 +1,7 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-/* Libraries */
+
 
 #include <stdio.h>
 #include <unistd.h>
@@ -43,59 +43,59 @@ typedef struct instruction_s
  * @stack: stack
  * @queue: false
  */
-typedef struct settings_s
+typedef struct file_s
 {
-	FILE *file;
+	FILE *fp;
 	char *line;
 	stack_t *stack;
 	_Bool queue;
-} settings_t;
+} file_t;
 
-extern settings_t settings;
+extern file_t file;
 
 
 
-/* helpers */
+
 void verify_args(int argc);
 void open_and_read(char *f);
-void exec_monty(stack_t **stack, char *opcode, int ln);
-void set(void);
-void clean(void);
+void apply_monty(stack_t **stack, char *opcode, int ln);
+void get(void);
+void total_free(void);
 
-/*Tools*/
+
 int is_number(char *c);
 
-/* Instructions */
-void exec_pall(stack_t **stack, unsigned int line_number);
-void exec_pop(stack_t **stack, unsigned int line_number);
-void exec_pint(stack_t **stack, unsigned int line_number);
-void exec_swap(stack_t **stack, unsigned int line_number);
-void exec_nop(stack_t **stack, unsigned int line_number);
 
-/* String Instructions */
-void exec_pchar(stack_t **stack, unsigned int line_number);
-void exec_pstr(stack_t **stack, unsigned int line_number);
+void apply_pall(stack_t **stack, unsigned int line_number);
+void apply_pop(stack_t **stack, unsigned int line_number);
+void apply_pint(stack_t **stack, unsigned int line_number);
+void apply_swap(stack_t **stack, unsigned int line_number);
+void apply_nop(stack_t **stack, unsigned int line_number);
 
-/* Aritmetic Instructions */
-void exec_div(stack_t **stack, unsigned int line_number);
-void exec_mod(stack_t **stack, unsigned int line_number);
-void exec_add(stack_t **stack, unsigned int line_number);
-void exec_sub(stack_t **stack, unsigned int line_number);
-void exec_mul(stack_t **stack, unsigned int line_number);
 
-/* Rotations Instructions*/
-void exec_rotl(stack_t **stack, unsigned int line_number);
-void exec_rotr(stack_t **stack, unsigned int line_number);
+void apply_pchar(stack_t **stack, unsigned int line_number);
+void apply_pstr(stack_t **stack, unsigned int line_number);
 
-/* Errors managements */
 
-void error_handler(char *opcode, int errorcode, int ln);
+void apply_div(stack_t **stack, unsigned int line_number);
+void apply_mod(stack_t **stack, unsigned int line_number);
+void apply_add(stack_t **stack, unsigned int line_number);
+void apply_sub(stack_t **stack, unsigned int line_number);
+void apply_mul(stack_t **stack, unsigned int line_number);
 
-/* FIFO AND LIFO */
-void exec_stack(stack_t **stack, unsigned int line_number);
-void exec_queue(stack_t **stack, unsigned int line_number);
 
-/* Stack Management */
+void apply_rotl(stack_t **stack, unsigned int line_number);
+void apply_rotr(stack_t **stack, unsigned int line_number);
+
+
+
+void error_handler(char *opcode, int code, int ln);
+
+
+void apply_stack(stack_t **stack, unsigned int line_number);
+void apply_queue(stack_t **stack, unsigned int line_number);
+
+
 
 stack_t *push_stack(stack_t **head, const int n);
 stack_t *push_queue(stack_t **head, const int n);
