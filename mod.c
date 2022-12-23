@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
- * p_add - adds the top two elements of the stack
+ * mod - computes the rest of the division of the second top element of the stack
  * @stack: stack_t
  * @count: unsigned int
  */
 
-void p_mod(stack_t **stack, unsigned int count)
+void mod(stack_t **stack, unsigned int c)
 {
     stack_t *h, *z;
     int i = 0, a;
@@ -14,7 +14,7 @@ void p_mod(stack_t **stack, unsigned int count)
     h = *stack;
     if (h == NULL)
     {
-        fprintf(stderr, "L%d: can't mod, stack too short\n", count);
+        fprintf(stderr, "L%d: can't mod, stack too short\n", c);
         free_stack(*stack);
         exit(EXIT_FAILURE);
     }
@@ -25,13 +25,13 @@ void p_mod(stack_t **stack, unsigned int count)
     }
     if (i < 2)
     {
-        fprintf(stderr, "L%d: can't mod, stack too short\n", count);
+        fprintf(stderr, "L%d: can't mod, stack too short\n", c);
         free_stack(*stack);
         exit(EXIT_FAILURE);
     }
     if ((*stack)->n == 0)
     {
-        fprintf(stderr, "L%d: division by zero\n", count);
+        fprintf(stderr, "L%d: division by zero\n", c);
         free_stack(*stack);
         exit(EXIT_FAILURE);
     }

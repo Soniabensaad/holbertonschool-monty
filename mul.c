@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
- * p_add - adds the top two elements of the stack
+ * mul-  multiplies the second top element of the stack 
  * @stack: stack_t
  * @count: unsigned int
  */
 
-void p_mul(stack_t **stack, unsigned int count)
+void mul(stack_t **stack, unsigned int c)
 {
     stack_t *h, *z;
     int i = 0, a;
@@ -14,7 +14,7 @@ void p_mul(stack_t **stack, unsigned int count)
     h = *stack;
     if (h == NULL)
     {
-        fprintf(stderr, "L%d: can't mul, stack too short\n", count);
+        fprintf(stderr, "L%d: can't mul, stack too short\n", c);
         free_stack(*stack);
         exit(EXIT_FAILURE);
     }
@@ -25,7 +25,7 @@ void p_mul(stack_t **stack, unsigned int count)
     }
     if (i < 2)
     {
-        fprintf(stderr, "L%d: can't mul, stack too short\n", count);
+        fprintf(stderr, "L%d: can't mul, stack too short\n", c);
         free_stack(*stack);
         exit(EXIT_FAILURE);
     }

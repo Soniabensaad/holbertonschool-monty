@@ -3,48 +3,48 @@
 /**
  * execute - executes the opcode
  * @stack: head linked list - stack
- * @count: line_counte
- * @cont: line content
+ * @c: line_counte
+ * @count: line content
  */
-void execute(char *cont, stack_t **stack, unsigned int count)
+void execute(char *count, stack_t **stack, unsigned int c)
 {
 
-	instruction_t opst[] = {{"push", p_push},
-							{"pall", p_pall},
-							{"pint", p_pint},
-							{"pop", p_pop},
-							{"swap", p_swap},
-							{"add", p_add},
-							{"nop", p_nop},
-							{"sub", p_sub},
-							{"div", p_div},
-							{"mul", p_mul},
-							{"mod", p_mod},
+	instruction_t opst[] = {{"push", push},
+							{"pall", pall},
+							{"pint", pint},
+							{"pop", pop},
+							{"swap", swap},
+							{"add", add},
+							{"nop", nop},
+							{"sub", sub},
+							{"div", div},
+							{"mul", mul},
+							{"mod", mod},
 							{NULL, NULL}};
 
 	int i = 0;
-	char *op;
+	char *p;
 
-	op = strtok(cont, " \n\t");
+	p = strtok(count, DELIM);
 
-	val = strtok(NULL, " \n\t");
-	if (op[0] == '#')
+	value = strtok(NULL, DELIM);
+	if (p[0] == '#')
 	{
 		return;
 	}
-	while (opst[i].opcode && op)
+	while (opst[i].opcode && p)
 	{
-		if (strcmp(op, opst[i].opcode) == 0)
+		if (strcmp(p, opst[i].opcode) == 0)
 		{
-			opst[i].f(stack, count);
+			opst[i].f(stack, c);
 			return;
 		}
 		i++;
 	}
-	if (op && opst[i].opcode == NULL)
+	if (p && opst[i].opcode == NULL)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", count, op);
-		free(cont);
+		fprintf(stderr, "L%d: unknown instruction %s\n", c, p);
+		free(count);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}

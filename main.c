@@ -9,12 +9,12 @@
 
 int main(int argc, char *argv[])
 {
-	char *cont;
+	char *count;
 	size_t size = 0;
-	ssize_t read = 1;
+	ssize_t readline = 1;
 	stack_t *stack = NULL;
 	FILE *file;
-	unsigned int count = 0;
+	unsigned int c = 0;
 
 	if (argc != 2)
 	{
@@ -29,14 +29,14 @@ int main(int argc, char *argv[])
 	}
 	while (read > 0)
 	{
-		cont = NULL;
-		read = getline(&cont, &size, file);
-		count++;
+		count = NULL;
+		readline = getline(&count, &size, file);
+		c++;
 		if (read > 0)
 		{
-			execute(cont, &stack, count);
+			execute(count, &stack, c);
 		}
-		free(cont);
+		free(count);
 	}
 	free_stack(stack);
 	fclose(file);

@@ -1,38 +1,38 @@
 #include "monty.h"
 
 /**
- * p_add - adds the top two elements of the stack
+ * sub - subtracts the top element of the stack
  * @stack: stack_t
- * @count: unsigned int
+ * @c: unsigned int
  */
 
-void p_sub(stack_t **stack, unsigned int count)
+void sub(stack_t **stack, unsigned int c)
 {
-    stack_t *h, *z;
-    int i = 0, a;
+    stack_t *s, *temp;
+    int i = 0, j;
 
-    h = *stack;
-    if (h == NULL)
+    s = *stack;
+    if (s == NULL)
     {
-        fprintf(stderr, "L%d: can't sub, stack too short\n", count);
+        fprintf(stderr, "L%d: can't sub, stack too short\n", c);
         free_stack(*stack);
         exit(EXIT_FAILURE);
     }
-    while (h)
+    while (s)
     {
-        h = h->next;
+        s = s->next;
         i++;
     }
     if (i < 2)
     {
-        fprintf(stderr, "L%d: can't sub, stack too short\n", count);
+        fprintf(stderr, "L%d: can't sub, stack too short\n", c);
         free_stack(*stack);
         exit(EXIT_FAILURE);
     }
-    z = *stack;
-    a = (*stack)->next->n - (*stack)->n;
+    temp = *stack;
+    j = (*stack)->next->n - (*stack)->n;
 
-    (*stack)->next->n = a;
+    (*stack)->next->n = j;
     *stack = (*stack)->next;
-    free(z);
+    free(temp);
 }

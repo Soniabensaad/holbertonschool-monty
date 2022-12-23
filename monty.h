@@ -7,8 +7,8 @@
 #include <fcntl.h>
 #include <string.h>
 #include <ctype.h>
-
-char *val;
+#define DELIM " \n\t"
+char *value;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -40,20 +40,18 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void execute(char *cont, stack_t **stack, unsigned int count);
+void execute(char *cont, stack_t **stack, unsigned int c);
 void free_stack(stack_t *stack);
-void p_push(stack_t **stack, unsigned int count);
+void push(stack_t **stack, unsigned int c);
 void add_node(stack_t **stack, int n);
-void p_pall(stack_t **stack, __attribute__((unused)) unsigned int count);
-void p_pint(stack_t **stack, unsigned int count);
-void p_pop(stack_t **stack, unsigned int count);
-void p_swap(stack_t **stack, unsigned int count);
-void p_add(stack_t **stack, unsigned int count);
-void p_nop(__attribute__((unused)) stack_t **stack, __attribute__((unused)) unsigned int count);
-void p_sub(stack_t **stack, unsigned int count);
-void p_div(stack_t **stack, unsigned int count);
-void p_mul(stack_t **stack, unsigned int count);
-void p_mod(stack_t **stack, unsigned int count);
-void p_pchar(stack_t **stack, unsigned int count);
-void p_pstr(stack_t **stack, unsigned int count);
+void pall(stack_t **stack, __attribute__((unused)) unsigned int c);
+void pint(stack_t **stack, unsigned int c);
+void pop(stack_t **stack, unsigned int c);
+void swap(stack_t **stack, unsigned int c);
+void add(stack_t **stack, unsigned int c);
+void nop(__attribute__((unused)) stack_t **stack, __attribute__((unused)) unsigned int c);
+void sub(stack_t **stack, unsigned int c);
+void div(stack_t **stack, unsigned int c);
+void mul(stack_t **stack, unsigned int c);
+void mod(stack_t **stack, unsigned int c);
 #endif

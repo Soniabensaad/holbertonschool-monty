@@ -1,40 +1,40 @@
 #include "monty.h"
 
 /**
- * p_push - pushes an element to the stack
+ * push - pushes an element to the stack
  * @stack: stack_t
- * @count: unsigned int
+ * @c: unsigned int
  */
 
-void p_push(stack_t **stack, unsigned int count)
+void push(stack_t **stack, unsigned int c)
 {
-	int n, i = 0, z;
+	int tp, i = 0, j;
 
-	if (val)
+	if (value)
 	{
-		if (val[0] == '-')
+		if (value[0] == '-')
 			i++;
-		for (; val[i] != '\0'; i++)
+		for (; value[i] != '\0'; i++)
 		{
-			if (val[i] > '9' || val[i] < '0')
+			if (value[i] > '9' || value[i] < '0')
 			{
-				z = 1;
+				j = 1;
 			}
 		}
-		if (z == 1)
+		if (j == 1)
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", count);
+			fprintf(stderr, "L%d: usage: push integer\n", c);
 			free_stack(*stack);
 			exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", count);
+		fprintf(stderr, "L%d: usage: push integer\n", c);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
-	n = atoi(val);
+	tp = atoi(value);
 
-	add_node(stack, n);
+	add_node(stack, tp);
 }

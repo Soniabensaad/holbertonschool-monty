@@ -1,21 +1,21 @@
 #include "monty.h"
 
 /**
- * p_pall - prints all the values on the stack
+ * pall - prints all the values on the stack
  * @stack: stack_t
  * @count: unsigned int
  */
 
-void p_pall(stack_t **stack, __attribute__((unused)) unsigned int count)
+void pall(stack_t **stack, __attribute__((unused)) unsigned int c)
 {
-	stack_t *h;
+	stack_t *s;
 
-	h = *stack;
-	if (h == NULL)
+	s = *stack;
+	if (s == NULL)
 		return;
-	while (h)
+	while (s)
 	{
-		printf("%d\n", h->n);
-		h = h->next;
+		printf("%d\n", s->n);
+		s = s->next;
 	}
 }
