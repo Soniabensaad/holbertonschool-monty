@@ -6,7 +6,6 @@
  * @count: line_counte
  * @cont: line content
  */
-
 void execute(char *cont, stack_t **stack, unsigned int count)
 {
 
