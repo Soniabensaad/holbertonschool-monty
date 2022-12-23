@@ -43,7 +43,7 @@ typedef struct instruction_s
 void execute(char *cont, stack_t **stack, unsigned int c);
 void free_stack(stack_t *stack);
 void push(stack_t **stack, unsigned int c);
-void add_node(stack_t **stack, int n);
+void add_node(stack_t **stack, int tp);
 void pall(stack_t **stack, __attribute__((unused)) unsigned int c);
 void pint(stack_t **stack, unsigned int c);
 void pop(stack_t **stack, unsigned int c);

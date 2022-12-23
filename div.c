@@ -3,7 +3,7 @@
 /**
  * div - divides the second top element of the stack
  * @stack: stack_t
- * @count: unsigned int
+ * @c: unsigned int
  */
 
 void div(stack_t **stack, unsigned int c)
