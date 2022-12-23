@@ -1,11 +1,11 @@
 #include "monty.h"
 /**
- * apply_rotl - this function executes the pchar opcode
+ * exec_rotl - this function executes the pchar opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void apply_rotl(stack_t **stack, unsigned int line_number)
+void exec_rotl(stack_t **stack, unsigned int line_number)
 {
 	stack_t *actual = *stack, *next;
 	int aux;
@@ -25,12 +25,12 @@ void apply_rotl(stack_t **stack, unsigned int line_number)
 	}
 }
 /**
- * apply_rotr - this function executes the rotr opcode
+ * exec_rotr - this function executes the rotr opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void apply_rotr(stack_t **stack, unsigned int line_number)
+void exec_rotr(stack_t **stack, unsigned int line_number)
 {
 	stack_t *actual = *stack;
 	int aux;
@@ -49,27 +49,27 @@ void apply_rotr(stack_t **stack, unsigned int line_number)
 	}
 }
 /**
- * apply_stack - this function executes the stack opcode
+ * exec_stack - this function executes the stack opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void apply_stack(stack_t **stack, unsigned int line_number)
+void exec_stack(stack_t **stack, unsigned int line_number)
 {
 	(void) stack;
 	(void) line_number;
-	file.queue = false;
+	settings.queue = false;
 }
 /**
- * apply_queue - this function executes the queue opcode
+ * exec_queue - this function executes the queue opcode
  * @stack: the stack to read the numbers
  * @line_number: number of line that is executed
  * Return: void function
  */
-void apply_queue(stack_t **stack, unsigned int line_number)
+void exec_queue(stack_t **stack, unsigned int line_number)
 {
 	(void) stack;
 	(void) line_number;
-	file.queue = true;
+	settings.queue = true;
 }
 
