@@ -85,8 +85,6 @@ void exec_monty(stack_t **stack, char *opcode, int ln)
 		{"mod", exec_mod},
 		{"rotl", exec_rotl},
 		{"rotr", exec_rotr},
-		{"stack", exec_stack},
-		{"queue", exec_queue},
 		{NULL, NULL}
 	};
 	op = strtok(opcode, " \n");
@@ -106,8 +104,6 @@ void set(void)
 {
 	settings.file = NULL;
 	settings.line = NULL;
-	settings.stack = NULL;
-	settings.queue = false;
 }
 /**
  * clean - clean men

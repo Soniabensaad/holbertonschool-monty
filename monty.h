@@ -89,12 +89,6 @@ void exec_rotr(stack_t **stack, unsigned int line_number);
 
 void error_handler(char *opcode, int errorcode, int ln);
 
-
-void exec_stack(stack_t **stack, unsigned int line_number);
-void exec_queue(stack_t **stack, unsigned int line_number);
-
-
-
 stack_t *push_stack(stack_t **head, const int n);
 stack_t *push_queue(stack_t **head, const int n);
 void fstack(stack_t *head);
